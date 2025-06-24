@@ -24,8 +24,9 @@ class ProjectController extends Controller
 
     public function tambah()
     {
+        $title = 'Tambah|Project';
         $kategori = Kategori::all();
-        return view('project.tambah', compact('kategori'));
+        return view('project.tambah', compact('kategori', 'title'));
     }
 
     public function store(Request $request)
