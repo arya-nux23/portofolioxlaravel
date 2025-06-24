@@ -62,6 +62,7 @@ class ProjectController extends Controller
     }
 
     public function edit($id){
+        $data ['title'] = 'Edit|Project';
         $data['project'] = Project::where('id_project', $id)->first();
         $data['kategori'] = Kategori::all();
         return view('project.edit', $data);
