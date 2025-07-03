@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit/{id}/project', [ProjectController::class, 'edit']);
     Route::post('/edit/{id}/project', [ProjectController::class, 'update']);
     Route::get('/hapus/{id}/project', [ProjectController::class, 'destroy']);
+    Route::get('/foto/{id}', [ProjectController::class, 'foto'])->name('project.foto');
 
     // pengalaman
     Route::get('/pengalaman', [PengalamanController::class, 'index'])->name('pengalaman');

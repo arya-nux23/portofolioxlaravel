@@ -154,22 +154,23 @@
                                                             <div class="col-md-4 mb-3">
                                                                 <strong>Foto Project</strong><br>
                                                                 @if ($item->foto_project)
-                                                                    <img src="{{ asset('storage/' . $item->foto_project) }}" class="img-thumbnail mt-2" width="100%" alt="Foto Project">
+                                                                    <img src="{{ asset($item->foto_project) }}" class="img-thumbnail mt-2" width="100%" alt="Foto Project">
                                                                 @endif
                                                             </div>
                                                             <div class="col-md-4 mb-3">
                                                                 <strong>Foto Pages</strong><br>
                                                                 @if ($item->foto_pages)
-                                                                    <img src="{{ asset('storage/' . $item->foto_pages) }}" class="img-thumbnail mt-2" width="100%" alt="Foto Pages">
+                                                                    <img src="{{ asset($item->foto_pages) }}" class="img-thumbnail mt-2" width="100%" alt="Foto Pages">
                                                                 @endif
                                                             </div>
                                                             <div class="col-md-4 mb-3">
                                                                 <strong>Foto Dashboard</strong><br>
                                                                 @if ($item->foto_dashboard)
-                                                                    <img src="{{ asset('storage/' . $item->foto_dashboard) }}" class="img-thumbnail mt-2" width="100%" alt="Foto Dashboard">
+                                                                    <img src="{{ asset($item->foto_dashboard) }}" class="img-thumbnail mt-2" width="100%" alt="Foto Dashboard">
                                                                 @endif
                                                             </div>
                                                         </div>
+
 
                                                         {{-- Deskripsi --}}
                                                         <div class="mb-3 mt-4">

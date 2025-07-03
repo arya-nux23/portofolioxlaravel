@@ -13,7 +13,7 @@
 <!-- Project Details -->
 <section class="project-details-wrap">
     <div class="project-details-img" data-aos="zoom-in">
-        <img src="{{ asset('storage/' . $project->foto_project) }}" alt="Project Details" class="img-fluid w-100" style="max-height: 551px; object-fit: cover;">
+        <img src="{{ asset($project->foto_project) }}" alt="Project Details" class="img-fluid w-100" style="max-height: 551px; object-fit: cover;">
     </div>
 
     <div class="container">
@@ -50,7 +50,7 @@
         <div class="row mb-24">
             <div class="col-md-6" data-aos="zoom-in">
                 <div class="project-details-3-img">
-                    <img src="{{ asset('storage/' . $project->foto_pages) }}"
+                    <img src="{{ asset($project->foto_pages) }}"
                          alt="Project"
                          class="img-fluid"
                          style="width: 568px; height: 488px; object-fit: cover; border-radius: 8px;">
@@ -58,7 +58,7 @@
             </div>
             <div class="col-md-6" data-aos="zoom-in">
                 <div class="project-details-3-img">
-                    <img src="{{ asset('storage/' . $project->foto_dashboard) }}"
+                    <img src="{{ asset($project->foto_dashboard) }}"
                          alt="Project"
                          class="img-fluid"
                          style="width: 568px; height: 488px; object-fit: cover; border-radius: 8px;">

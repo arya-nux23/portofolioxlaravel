@@ -29,7 +29,7 @@
                         <a class="overlay-link" href="/detail/{{ $item->id_project }}/project"></a>
                         <!-- Gambar ukuran 339x287 -->
                         <div class="project-img">
-                            <img src="{{ asset('storage/' . $item->foto_project) }}" alt="Project" class="project-img-fixed">
+                            <img src="{{ asset($item->foto_project) }}" alt="Project" class="project-img-fixed">
                         </div>
                         <div class="d-flex align-items-center justify-content-between mt-2">
                             <div class="project-info">

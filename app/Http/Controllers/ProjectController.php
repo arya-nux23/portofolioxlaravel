@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -42,27 +43,34 @@ class ProjectController extends Controller
             'id_kategori' => 'required|exists:kategori,id_kategori',
         ]);
 
-        // Proses upload gambar
-        $fotoPages = $request->file('foto_pages')->store('upload/foto', 'public');
-        $fotoDashboard = $request->file('foto_dashboard')->store('upload/foto', 'public');
-        $fotoProject = $request->file('foto_project')->store('upload/foto', 'public');
+        // Buat nama unik
+        $fotoPagesName = Str::random(20) . '.' . $request->file('foto_pages')->getClientOriginalExtension();
+        $fotoDashboardName = Str::random(20) . '.' . $request->file('foto_dashboard')->getClientOriginalExtension();
+        $fotoProjectName = Str::random(20) . '.' . $request->file('foto_project')->getClientOriginalExtension();
+
+        // Simpan ke folder upload/foto (tanpa public_path)
+        $request->file('foto_pages')->move('upload/foto', $fotoPagesName);
+        $request->file('foto_dashboard')->move('upload/foto', $fotoDashboardName);
+        $request->file('foto_project')->move('upload/foto', $fotoProjectName);
 
         Project::create([
             'nama_project' => $request->nama,
             'nama_client' => $request->client,
             'tahun' => $request->tahun,
             'desk_project' => $request->desk,
-            'foto_pages' => $fotoPages,
-            'foto_dashboard' => $fotoDashboard,
-            'foto_project' => $fotoProject, // sesuai nama kolom
+            'foto_pages' => 'upload/foto/' . $fotoPagesName,
+            'foto_dashboard' => 'upload/foto/' . $fotoDashboardName,
+            'foto_project' => 'upload/foto/' . $fotoProjectName,
             'id_kategori' => $request->id_kategori,
         ]);
 
         return redirect('/project')->with('success', 'Data Project Berhasil Ditambah');
     }
 
-    public function edit($id){
-        $data ['title'] = 'Edit|Project';
+
+    public function edit($id)
+    {
+        $data['title'] = 'Edit|Project';
         $data['project'] = Project::where('id_project', $id)->first();
         $data['kategori'] = Kategori::all();
         return view('project.edit', $data);
@@ -91,31 +99,37 @@ class ProjectController extends Controller
             'id_kategori' => $request->id_kategori,
         ];
 
-        // Path base
-        $storagePath = public_path('storage/');
+        // Folder relatif
+        $folder = 'upload/foto/';
 
-        // Handle foto_pages
+        // Foto Pages
         if ($request->hasFile('foto_pages')) {
-            if ($project->foto_pages && file_exists($storagePath . $project->foto_pages)) {
-                unlink($storagePath . $project->foto_pages);
+            if ($project->foto_pages && file_exists(base_path('public/' . $project->foto_pages))) {
+                unlink(base_path('public/' . $project->foto_pages));
             }
-            $data['foto_pages'] = $request->file('foto_pages')->store('upload/foto', 'public');
+            $newName = Str::random(20) . '.' . $request->file('foto_pages')->getClientOriginalExtension();
+            $request->file('foto_pages')->move($folder, $newName);
+            $data['foto_pages'] = $folder . $newName;
         }
 
-        // Handle foto_dashboard
+        // Foto Dashboard
         if ($request->hasFile('foto_dashboard')) {
-            if ($project->foto_dashboard && file_exists($storagePath . $project->foto_dashboard)) {
-                unlink($storagePath . $project->foto_dashboard);
+            if ($project->foto_dashboard && file_exists(base_path('public/' . $project->foto_dashboard))) {
+                unlink(base_path('public/' . $project->foto_dashboard));
             }
-            $data['foto_dashboard'] = $request->file('foto_dashboard')->store('upload/foto', 'public');
+            $newName = Str::random(20) . '.' . $request->file('foto_dashboard')->getClientOriginalExtension();
+            $request->file('foto_dashboard')->move($folder, $newName);
+            $data['foto_dashboard'] = $folder . $newName;
         }
 
-        // Handle foto_project
+        // Foto Project
         if ($request->hasFile('foto_project')) {
-            if ($project->foto_project && file_exists($storagePath . $project->foto_project)) {
-                unlink($storagePath . $project->foto_project);
+            if ($project->foto_project && file_exists(base_path('public/' . $project->foto_project))) {
+                unlink(base_path('public/' . $project->foto_project));
             }
-            $data['foto_project'] = $request->file('foto_project')->store('upload/foto', 'public');
+            $newName = Str::random(20) . '.' . $request->file('foto_project')->getClientOriginalExtension();
+            $request->file('foto_project')->move($folder, $newName);
+            $data['foto_project'] = $folder . $newName;
         }
 
         $project->update($data);
@@ -128,24 +142,18 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        $storagePath = public_path('storage/');
-
-        // Hapus foto_pages jika ada
-        if ($project->foto_pages && file_exists($storagePath . $project->foto_pages)) {
-            unlink($storagePath . $project->foto_pages);
+        if ($project->foto_pages && file_exists(base_path('public/' . $project->foto_pages))) {
+            unlink(base_path('public/' . $project->foto_pages));
         }
 
-        // Hapus foto_dashboard jika ada
-        if ($project->foto_dashboard && file_exists($storagePath . $project->foto_dashboard)) {
-            unlink($storagePath . $project->foto_dashboard);
+        if ($project->foto_dashboard && file_exists(base_path('public/' . $project->foto_dashboard))) {
+            unlink(base_path('public/' . $project->foto_dashboard));
         }
 
-        // Hapus foto_project jika ada
-        if ($project->foto_project && file_exists($storagePath . $project->foto_project)) {
-            unlink($storagePath . $project->foto_project);
+        if ($project->foto_project && file_exists(base_path('public/' . $project->foto_project))) {
+            unlink(base_path('public/' . $project->foto_project));
         }
 
-        // Hapus data dari database
         $project->delete();
 
         return redirect('/project')->with('success', 'Data Project dan file berhasil dihapus');

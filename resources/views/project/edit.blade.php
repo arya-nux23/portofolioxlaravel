@@ -75,14 +75,13 @@
                                 </div>
                                 @if (!empty($project->foto_project))
                                     <div class="mt-2">
-                                        <!-- Trigger Gambar -->
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modalFotoProject">
-                                            <img src="{{ asset('storage/' . $project->foto_project) }}" alt="Foto Project"
-                                                width="100" style="cursor: pointer;">
+                                            <img src="{{ asset($project->foto_project) }}" alt="Foto Project" width="100"
+                                                style="cursor: pointer;">
                                         </a>
                                         <small class="text-muted d-block">Gambar saat ini</small>
                                     </div>
-                                    <!-- Modal -->
+
                                     <div class="modal fade" id="modalFotoProject" tabindex="-1"
                                         aria-labelledby="modalFotoProjectLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -93,13 +92,14 @@
                                                         aria-label="Tutup"></button>
                                                 </div>
                                                 <div class="modal-body text-center">
-                                                    <img src="{{ asset('storage/' . $project->foto_project) }}"
-                                                        alt="Foto Project" class="img-fluid rounded">
+                                                    <img src="{{ asset($project->foto_project) }}" alt="Foto Project"
+                                                        class="img-fluid rounded">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
+
                             </div>
                             <div class="col-md-4 position-relative">
                                 <label class="form-label" for="foto_pages">Upload Gambar Halaman</label>
@@ -112,13 +112,12 @@
                                 @if (!empty($project->foto_pages))
                                     <div class="mt-2">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modalFotoPages">
-                                            <img src="{{ asset('storage/' . $project->foto_pages) }}" alt="Foto Pages"
-                                                width="100" style="cursor: pointer;">
+                                            <img src="{{ asset($project->foto_pages) }}" alt="Foto Pages" width="100"
+                                                style="cursor: pointer;">
                                         </a>
                                         <small class="text-muted d-block">Gambar saat ini</small>
                                     </div>
 
-                                    <!-- Modal Foto Pages -->
                                     <div class="modal fade" id="modalFotoPages" tabindex="-1"
                                         aria-labelledby="modalFotoPagesLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -129,13 +128,14 @@
                                                         aria-label="Tutup"></button>
                                                 </div>
                                                 <div class="modal-body text-center">
-                                                    <img src="{{ asset('storage/' . $project->foto_pages) }}"
-                                                        alt="Foto Pages" class="img-fluid rounded">
+                                                    <img src="{{ asset($project->foto_pages) }}" alt="Foto Pages"
+                                                        class="img-fluid rounded">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
+
                             </div>
                             <div class="col-md-4 position-relative">
                                 <label class="form-label" for="foto_dashboard">Upload Gambar Dashboard</label>
@@ -148,13 +148,12 @@
                                 @if (!empty($project->foto_dashboard))
                                     <div class="mt-2">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modalFotoDashboard">
-                                            <img src="{{ asset('storage/' . $project->foto_dashboard) }}"
-                                                alt="Foto Dashboard" width="100" style="cursor: pointer;">
+                                            <img src="{{ asset($project->foto_dashboard) }}" alt="Foto Dashboard"
+                                                width="100" style="cursor: pointer;">
                                         </a>
                                         <small class="text-muted d-block">Gambar saat ini</small>
                                     </div>
 
-                                    <!-- Modal Foto Dashboard -->
                                     <div class="modal fade" id="modalFotoDashboard" tabindex="-1"
                                         aria-labelledby="modalFotoDashboardLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -166,13 +165,14 @@
                                                         aria-label="Tutup"></button>
                                                 </div>
                                                 <div class="modal-body text-center">
-                                                    <img src="{{ asset('storage/' . $project->foto_dashboard) }}"
-                                                        alt="Foto Dashboard" class="img-fluid rounded">
+                                                    <img src="{{ asset($project->foto_dashboard) }}" alt="Foto Dashboard"
+                                                        class="img-fluid rounded">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
+
                             </div>
                             <div class="col-12">
                                 <label class="form-label" for="exampleFormControlTextarea1">Description</label>

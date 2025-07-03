@@ -58,8 +58,8 @@
                         <div data-aos="zoom-in">
                             <div class="about-project-box info-box shadow-box h-full">
                                 <a class="overlay-link" href="/pekerjaan"></a>
-                                <img src="{{ asset('storage/' . $project->foto_pages) }}" alt="BG" class="bg-img">
-                                <img src="{{ asset('storage/' . $project->foto_project) }}" alt="My Works">
+                                <img src="{{ asset($project->foto_pages) }}" alt="BG" class="bg-img">
+                                <img src="{{ asset($project->foto_project) }}" alt="My Works">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="infos">
                                         <h4>SHOWCASE</h4>
